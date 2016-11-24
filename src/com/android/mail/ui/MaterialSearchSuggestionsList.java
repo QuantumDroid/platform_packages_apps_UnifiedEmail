@@ -107,8 +107,17 @@ public class MaterialSearchSuggestionsList extends LinearLayout
 
     @Override
     public void onClick(View view) {
-        mController.showSearchActionBar(
-                MaterialSearchViewController.SEARCH_VIEW_STATE_ONLY_ACTIONBAR);
+        mController.setQueryText(mController.getKeyWord());
+        if (mController.isQueryTextNull()) {
+            mController.focusSearchBar(false);
+        } else if (mController.ismIsShowEmptyView()) {
+            mController.showSearchActionBar(
+                    MaterialSearchViewController.SEARCH_VIEW_STATE_VISIBLE);
+            mController.focusSearchBar(false);
+        } else {
+            mController.showSearchActionBar(
+                    MaterialSearchViewController.SEARCH_VIEW_STATE_ONLY_ACTIONBAR);
+        }
     }
 
     // Background task for querying the suggestions list
@@ -134,6 +143,8 @@ public class MaterialSearchSuggestionsList extends LinearLayout
                         result.add(new SuggestionItem(suggestion, iconUri));
                     } while (c.moveToNext());
                 }
+            } catch (IllegalStateException e) {
+                // db could have been closed due to cleanup, simply don't do anything.
             } finally {
                 if (c != null) {
                     c.close();

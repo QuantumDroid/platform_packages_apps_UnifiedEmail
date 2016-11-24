@@ -375,7 +375,7 @@
         <item name="android:scaleType">center</item>
     </style>
 
-    <style name="MessageHeaderOverflowButtonStyle" parent="@style/OverflowButtonStyle">
+    <style name="MessageHeaderOverflowButtonStyle" parent="@style/SaveAttachmentButtonStyle">
         <item name="android:layout_width">@dimen/message_header_overflow_button_width</item>
         <item name="android:layout_height">@dimen/message_header_action_button_height</item>
         <item name="android:layout_marginTop">@dimen/message_header_action_button_margin_top</item>
@@ -454,8 +454,8 @@
         <item name="android:layout_marginTop">16dip</item>
     </style>
 
-    <style name="OverflowButtonStyle" parent="@style/Widget.AppCompat.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_overflow_24dp</item>
+    <style name="SaveAttachmentButtonStyle" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/save</item>
     </style>
 
     <style name="ActionBarOverflowButtonStyle" parent="@android:style/Widget.Holo.ActionButton.Overflow">
@@ -755,7 +755,7 @@
     </style>
 
     <style name="SearchTextStyle">
-        <item name="android:textColor">@color/search_banner_text</item>
+        <item name="android:textColor">@color/search_factor_text_normal_color</item>
         <item name="android:textSize">@dimen/search_banner_text_size</item>
     </style>
 
@@ -920,4 +920,14 @@
         <item name="android:paddingRight">@dimen/account_item_name_end_padding</item>
     </style>
 
+    <style name="MailSearchFactorItemStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="android:textColor">@color/search_factor_text_normal_color</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>
