@@ -25,6 +25,14 @@
         <item name="homeAsUpIndicator">@drawable/ic_arrow_back_wht_24dp_with_rtl</item>
     </style>
 
+    <style name="EmlViewerTheme.Appcompat" parent="@style/UnifiedEmailTheme.Appcompat">
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+        <item name="android:actionBarWidgetTheme">@style/ActionBarWidgetTheme</item>
+        <item name="android:actionOverflowButtonStyle">@style/ActionBarOverflowButtonStyle</item>
+        <item name="android:listViewWhiteStyle">@android:style/Widget.Holo.Light.ListView</item>
+    </style>
+
+
     <style name="UnifiedEmailTheme.Appcompat.Toolbar" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="actionModeBackground">@color/action_mode_background</item>
