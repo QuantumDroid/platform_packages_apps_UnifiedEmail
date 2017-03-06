@@ -582,8 +582,10 @@ public class ConversationItemView extends View
         }
 
         Utils.traceBeginSection("load folders");
-        mHeader.folderDisplayer.loadConversationFolders(mHeader.conversation,
-                mDisplayedFolder.folderUri, ignoreFolderType);
+        if(mDisplayedFolder != null) {
+            mHeader.folderDisplayer.loadConversationFolders(mHeader.conversation,
+                    mDisplayedFolder.folderUri, ignoreFolderType);
+        }
         Utils.traceEndSection();
 
         if (mHeader.showDateText) {
@@ -755,8 +757,10 @@ public class ConversationItemView extends View
 
         if (mActivity.isAccessibilityEnabled()) {
             mHeader.resetContentDescription();
-            setContentDescription(mHeader.getContentDescription(
-                    mContext, mDisplayedFolder.shouldShowRecipients(), foldersDesc));
+            if (mDisplayedFolder != null) {
+                setContentDescription(mHeader.getContentDescription(
+                        mContext, mDisplayedFolder.shouldShowRecipients(), foldersDesc));
+            }
         }
     }
 
@@ -806,11 +810,12 @@ public class ConversationItemView extends View
             mHeader.displayableNames.clear();
             mHeader.styledNames.clear();
 
-            SendersView.format(context, mHeader.conversation.conversationInfo,
-                    mHeader.messageInfoString.toString(), maxChars, mHeader.styledNames,
-                    mHeader.displayableNames, mHeader.mSenderAvatarModel,
-                    mAccount, mDisplayedFolder.shouldShowRecipients(), true);
-
+            if (mDisplayedFolder != null) {
+                SendersView.format(context, mHeader.conversation.conversationInfo,
+                        mHeader.messageInfoString.toString(), maxChars, mHeader.styledNames,
+                        mHeader.displayableNames, mHeader.mSenderAvatarModel,
+                        mAccount, mDisplayedFolder.shouldShowRecipients(), true);
+            }
             // If we have displayable senders, load their thumbnails
             loadImages();
         } else {
@@ -1072,7 +1077,7 @@ public class ConversationItemView extends View
         boolean skipToHeader = false;
 
         // start with "To: " if we're showing recipients
-        if (mDisplayedFolder.shouldShowRecipients() && !parts.isEmpty()) {
+        if (mDisplayedFolder != null && mDisplayedFolder.shouldShowRecipients() && !parts.isEmpty()) {
             final SpannableString toHeader = SendersView.getFormattedToHeader();
             CharacterStyle[] spans = toHeader.getSpans(0, toHeader.length(),
                     CharacterStyle.class);
